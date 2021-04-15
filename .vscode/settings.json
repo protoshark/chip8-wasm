@@ -1,0 +1,11 @@
+{
+  "files.exclude": {
+    "chip8/target": true,
+    "chip8/LICENSE_APACHE": true,
+    "node_modules": true,
+    "wasm-build": true,
+    "yarn.lock": true,
+    "chip8/Cargo.lock": true,
+    "chip8/LICENSE_MIT": true
+  }
+}
