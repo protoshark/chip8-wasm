@@ -1,0 +1,33 @@
+span.key {
+  color: #32ff70;
+  // color: #020704;
+
+  padding: 0 0.4em;
+  font-size: 1.6rem;
+  border-radius: 6px;
+  border: 1px solid;
+  border-bottom: 2px solid;
+  text-transform: uppercase;
+}
+span.action {
+  margin-left: 8px;
+  font-size: 1.4rem;
+}
+
+.inlist {
+  align-self: flex-start;
+}
+
+
+.instructions {
+  align-self: flex-start;
+  width: 590px;
+  padding: 1em 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h1 {
+    font-size: 2.22rem;
+  }
+}

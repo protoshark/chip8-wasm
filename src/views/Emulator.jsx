@@ -9,7 +9,6 @@ import {
   SCREEN_SCALE,
   SCREEN_WIDTH,
 } from "../constants";
-import selectedRom from "../redux/reducers/rom";
 
 const keypad = {
   1: 0x1,

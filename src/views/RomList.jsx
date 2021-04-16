@@ -11,7 +11,7 @@ const RomList = (props) => {
   const dropdownStyles = {
     control: (provided, state) => ({
       ...provided,
-      background: "#000",
+      background: "#020704",
       boxShadow: "none",
       border: "2px solid",
       color: "#32ff6660",
@@ -49,7 +49,7 @@ const RomList = (props) => {
     }),
     menu: (provided, _state) => ({
       ...provided,
-      background: "#000",
+      background: "#020704",
       margin: 0,
       border: "2px solid #32ff6660",
       borderTop: 0,
@@ -57,7 +57,7 @@ const RomList = (props) => {
     }),
     option: (provided, state) => ({
       ...provided,
-      background: state.isFocused || state.isSelected ? "#32ff6610" : "#000",
+      background: state.isFocused || state.isSelected ? "#32ff6610" : "#020704",
       color: state.isFocused ? "#32ff66" : "#32ff6660",
       ":active": {
         background: "#32ff6650",

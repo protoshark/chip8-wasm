@@ -2,13 +2,13 @@
 *::after,
 *::before {
   box-sizing: border-box;
+  text-shadow: 0 0 6px rgba(50, 255, 101, 0.22);
+  font-family: "VT323" !important;
 }
 
 body,
 html {
   margin: 0;
-  background-color: #000;
+  background-color: #020704;
   color: #32ff66;
-
-  font-family: "VT323";
 }
