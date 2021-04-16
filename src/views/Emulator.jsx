@@ -9,6 +9,7 @@ import {
   SCREEN_SCALE,
   SCREEN_WIDTH,
 } from "../constants";
+import selectedRom from "../redux/reducers/rom";
 
 const keypad = {
   1: 0x1,
@@ -32,7 +33,10 @@ const keypad = {
 class Emulator extends React.Component {
   constructor(props) {
     super(props);
+
     this.canvasRef = React.createRef();
+    this.canvasWrapperRef = React.createRef();
+
     this.animationFrame = 0;
     this.keypadMask = 0;
     this.cpu = null;
@@ -40,11 +44,7 @@ class Emulator extends React.Component {
 
   async start() {
     cancelAnimationFrame(this.animationFrame);
-
-    // the selected rom should be a valid rom
-    if (this.props.rom.id < 0) {
-      return;
-    }
+    if (!this.props.rom) return;
 
     console.log(`Starting ${this.props.rom.name}`);
 
@@ -56,23 +56,25 @@ class Emulator extends React.Component {
     let chip8 = await import("chip8");
     this.cpu = chip8.CHIP8.new(romBuffer);
 
-    this.canvasRef.current.addEventListener(
+    document.addEventListener(
       "keydown",
-      this.onKeyPress(this.cpu, this.keypadMask)
+      this.onKeyPress(this.cpu)
     );
 
     let then = Date.now();
+    // Pong needs to run a little bit slower
+    const cyclesPerFrame = this.props.rom.name === "Pong" ? 20 : 100
+
     const loop = () => {
       if (Date.now() - then >= 1000 / 60) {
-        for (let i = 0; i < 500; i++) {
+        for (let i = 0; i < cyclesPerFrame; i++) {
           this.cpu.run_cycle();
         }
 
+        this.keypadMask = 0;
         this.cpu.set_keypad(0);
 
         this.cpu.decrement_timers();
-
-        this.cpu.set_keypad(this.keypadMask);
 
         let context = this.canvasRef.current.getContext("2d");
 
@@ -85,6 +87,7 @@ class Emulator extends React.Component {
             context.fillRect(x, y, 1, 1);
           }
         }
+        context.stroke();
 
         then = Date.now();
       }
@@ -95,30 +98,32 @@ class Emulator extends React.Component {
     this.animationFrame = requestAnimationFrame(loop);
   }
 
-  onKeyPress(cpu, keypadMask) {
+  onKeyPress(cpu) {
     return (event) => {
       const key = keypad[event.key];
-      if (cpu && key) {
+      if (cpu && key !== undefined) {
         const status = cpu.status();
         if (status >= 0) {
           cpu.set_register(status, key);
           cpu.set_running();
         }
-        keypadMask |= 1 << key;
+        this.keypadMask |= 1 << key;
+        this.cpu.set_keypad(this.keypadMask);
       }
     };
-    // console.log(`sending key `);
   }
 
   resetCanvas() {
     const context = this.canvasRef.current.getContext("2d");
     context.clearRect(0, 0, canvasConfig.width, canvasConfig.height);
     context.fillStyle = canvasConfig.foregroundColor;
+
+    context.strokeStyle = "#31363b";
+    context.lineWidth = 0.05;
   }
 
   componentDidMount() {
     const canvas = this.canvasRef.current;
-    if (!canvas) throw new Error("Could not find the canvas");
 
     canvas.width = SCREEN_WIDTH * SCREEN_SCALE;
     canvas.height = SCREEN_HEIGHT * SCREEN_SCALE;
@@ -127,26 +132,21 @@ class Emulator extends React.Component {
 
     const context = canvas.getContext("2d");
 
-    if (!context) throw new Error("Could not get the canvas context");
-
     context.fillStyle = canvasConfig.foregroundColor;
     context.scale(SCREEN_SCALE, SCREEN_SCALE);
   }
 
   componentDidUpdate() {
-    this.canvasRef.current.removeEventListener("keydown", this.onKeyPress);
+    document.removeEventListener("keydown", this.onKeyPress);
     this.resetCanvas();
     this.start();
   }
 
   render() {
     return (
-      <canvas
-        width="512"
-        height="256"
-        ref={this.canvasRef}
-        tabIndex="1"
-      ></canvas>
+      <div ref={this.canvasWrapperRef} className="canvas-wrapper">
+        <canvas ref={this.canvasRef}></canvas>
+      </div>
     );
   }
 }

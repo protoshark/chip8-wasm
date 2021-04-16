@@ -1,7 +1,21 @@
+.logo {
+  font-size: 1.9rem;
+  text-align: center;
+}
+
 .app {
-  height: 100vh;
-  width: 100%;
-  
-  display: grid;
-  place-items: center;
+  // height: 100vh;
+  width: 700px;
+  margin: 0 auto;
+  padding: 1.4em 0.7em;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+section.roms {
+  padding: 1em 0;
 }

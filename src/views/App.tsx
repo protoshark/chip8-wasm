@@ -11,8 +11,17 @@ const App = () => {
 
   return (
     <div className="app">
-      <Emulator rom={selectedRom} />
-      <RomList roms={roms} />
+      <div className="logo">
+        <h1>CHIP-8</h1>
+      </div>
+      <main className="container">
+        <section className="roms content-center">
+          <RomList roms={roms} />
+        </section>
+        <section className="emulator content-center">
+          <Emulator rom={selectedRom} />
+        </section>
+      </main>
     </div>
   );
 };

@@ -1,17 +1,15 @@
-import { AnyAction } from "redux";
-
 import { SET_ROM } from "../actions";
 import { Rom } from "../../utils/roms";
 
-const initialState: Rom = { id: -1, name: "", uri: "" };
+export interface selectRomAction {
+  type: string;
+  payload: { rom: Rom };
+}
 
-const selectedRom = (state = initialState, action: AnyAction) => {
+const selectedRom = (state = null, action: selectRomAction) => {
   switch (action.type) {
     case SET_ROM:
-      return {
-        ...state,
-        ...action.payload.rom,
-      };
+      return action.payload.rom;
     default:
       return state;
   }

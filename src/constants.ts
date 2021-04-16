@@ -5,6 +5,6 @@ export const SCREEN_SCALE = 9;
 export const canvasConfig = {
   width: SCREEN_WIDTH * SCREEN_SCALE,
   height: SCREEN_HEIGHT * SCREEN_SCALE,
-  backgroundColor: "#0f1713",
-  foregroundColor: "#00fa00",
+  backgroundColor: "#000000",
+  foregroundColor: "#32FF66",
 };
