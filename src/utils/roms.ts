@@ -35,8 +35,8 @@ const roms: Rom[] = [
     uri: "/roms/TETRIS",
     instructions: [
       { key: "q", action: "Rotate piece" },
-      { key: "w", action: "Go right" },
-      { key: "e", action: "Go left" },
+      { key: "w", action: "Go left" },
+      { key: "e", action: "Go right" },
       { key: "a", action: "Fall faster" },
     ],
   },
@@ -64,8 +64,8 @@ const roms: Rom[] = [
     uri: "/roms/PUZZLE",
     instructions: [
       { key: "2", action: "Go up" },
-      { key: "q", action: "Go right" },
-      { key: "e", action: "Go left" },
+      { key: "q", action: "Go left" },
+      { key: "e", action: "Go right" },
       { key: "s", action: "Go down" },
     ],
   },
