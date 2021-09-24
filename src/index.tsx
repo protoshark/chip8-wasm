@@ -9,7 +9,7 @@ import Root from "./Root";
 
 axios.defaults.baseURL =
   process.env.NODE_ENV === "production"
-    ? "https://protoshark.github.io/chip8-wasm"
+    ? "https://sixels.github.io/chip8-wasm"
     : "";
 
 render(<Root />, document.getElementById("root"));
