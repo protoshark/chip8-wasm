@@ -4,11 +4,11 @@ A CHIP-8 frontend made with React + Redux, Rust and WebAssembly
 
 ![Preview](./assets/preview.png)
 
-The core of the emulator is available at [protoshark/chip8](https://github.com/protoshark/chip8)
+The core of the emulator is available at [sixels/chip8](https://github.com/sixels/chip8)
 
 ## Testing online
 
-This project is available online at [protoshark.github.io/chip8-wasm](https://protoshark.github.io/chip8-wasm). Thanks to the GitHub Pages
+This project is available online at [sixels.github.io/chip8-wasm](https://sixels.github.io/chip8-wasm). Thanks to GitHub Pages
 
 ## Testing locally
 You can run it locally by cloning the repository and running
