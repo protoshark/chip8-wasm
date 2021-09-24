@@ -15,7 +15,7 @@ wasm-bindgen = "0.2.63"
 console_error_panic_hook = { version = "0.1.6", optional = true }
 # wee_alloc = { version = "0.4.5", optional = true }
 
-chip8 = { git = "https://github.com/protoshark/chip8.git", branch = "main" }
+chip8 = { git = "https://github.com/sixels/chip8.git", branch = "main" }
 getrandom = { version = "0.2", features = ["js"] }
 
 [dev-dependencies]
