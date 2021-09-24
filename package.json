@@ -1,6 +1,6 @@
 {
   "name": "chip8-wasm",
-  "homepage": "https://protoshark.github.io/chip8-wasm",
+  "homepage": "https://sixels.github.io/chip8-wasm",
   "version": "0.1.0",
   "dependencies": {
     "@types/node": "^12.0.0",
